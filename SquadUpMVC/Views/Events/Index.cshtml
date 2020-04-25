@@ -1,0 +1,44 @@
+﻿@model SquadUpMVC.Models.Response
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div>
+    <h4>Response</h4>
+    <hr />
+    <div>
+   @foreach(var item in Model.Data)
+   {
+       <div class="card">
+           
+           <p>Venue: @item.Venue.Name  </p> 
+           <p>Date: @item.Date</p>
+           <p>Artists:</p>
+           @if (item.ArtistList.Count == 0)
+           {
+                <p>N/A</p>
+           }else{
+           <ul>
+           @foreach(var artist in item.ArtistList)
+           {
+               <li>
+                   @artist.Name
+               </li>
+           }
+           </ul>
+
+           }
+           <a class="btn btn-primary" asp-action="Create">Squad Up!</a>
+       </div>
+   }
+
+    </div>
+
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
